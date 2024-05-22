@@ -23,6 +23,23 @@ class UserService {
     });
     return user;
   }
+
+  async updateUser(id: number, body: User) {
+    const user = await prisma.user.update({
+      where: {
+        id: id,
+      },
+      data: {
+        name: body.name,
+        email: body.email,
+        photo: body.photo,
+        password: body.password,
+        role: body.role
+      },
+    });
+    return user;
+  }
 }
+
 
 export default new UserService();
