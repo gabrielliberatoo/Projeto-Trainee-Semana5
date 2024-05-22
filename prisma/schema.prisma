@@ -16,4 +16,5 @@ model User {
   email String @unique
   photo String?
   role  String
+  password String
 }
