@@ -39,6 +39,15 @@ class UserService {
     });
     return user;
   }
+
+  async deleteUser(id: number) {
+    const user = await prisma.user.delete({
+      where: {
+        id: id,
+      },
+    });
+    return user;
+  }
 }
 
 
