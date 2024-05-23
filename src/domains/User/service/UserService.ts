@@ -39,6 +39,9 @@ class UserService {
     }
 
   async updateUser(id: number, body: User) {
+    if (!(await prisma.user.findUnique({ where: { id } }))) {
+        throw new Error("Invalid user ID.");
+      }
     const user = await prisma.user.update({
       where: {
         id: id,
