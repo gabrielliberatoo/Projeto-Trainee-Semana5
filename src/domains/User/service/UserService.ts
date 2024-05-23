@@ -15,14 +15,28 @@ class UserService {
     return user;
   }
 
-  async readUser(id: number) {
-    const user = await prisma.user.findUnique({
-      where: {
-        id: id,
-      },
-    });
-    return user;
-  }
+    async getUsers() {
+        const users = await prisma.user.findMany();
+        return users;
+    }
+
+    async getUserById(id: number) {
+        const user = await prisma.user.findUnique({
+            where: {
+                id: id,
+            },
+        });
+        return user;
+    }
+
+    async getUserByEmail(email: string) {
+        const user = await prisma.user.findUnique({
+            where: {
+                email: email,
+            },
+        });
+        return user;
+    }
 
   async updateUser(id: number, body: User) {
     const user = await prisma.user.update({
