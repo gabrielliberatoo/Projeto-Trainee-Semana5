@@ -16,7 +16,12 @@ class UserService {
   }
 
     async getUsers() {
-        const users = await prisma.user.findMany();
+        const users = await prisma.user.findMany({
+            orderBy: {
+                id: 'asc'
+            },
+            include: {musics: {}}
+        });
         return users;
     }
 
