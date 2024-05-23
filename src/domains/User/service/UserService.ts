@@ -10,7 +10,8 @@ class UserService {
                 photo: body.photo,
                 password: body.password,
                 role: body.role
-            }
+            },
+            include: {musics:true}
         });
     return user;
   }
@@ -20,7 +21,7 @@ class UserService {
             orderBy: {
                 id: 'asc'
             },
-            include: {musics: {}}
+            include: {musics:true}
         });
         return users;
     }
@@ -30,6 +31,7 @@ class UserService {
             where: {
                 id: id,
             },
+            include: {musics:true}
         });
         return user;
     }
@@ -39,11 +41,12 @@ class UserService {
             where: {
                 email: email,
             },
+            include: {musics:true}
         });
         return user;
     }
 
-  async updateUser(id: number, body: User) {
+  async updateUser(id: number, body: Partial<User>) {
     if (!(await prisma.user.findUnique({ where: { id } }))) {
         throw new Error("Invalid user ID.");
       }
@@ -58,6 +61,7 @@ class UserService {
         password: body.password,
         role: body.role
       },
+      include: {musics:true}
     });
     return user;
   }
@@ -70,6 +74,7 @@ class UserService {
       where: {
         id: id,
       },
+      include: {musics:true}
     });
     return user;
   }
