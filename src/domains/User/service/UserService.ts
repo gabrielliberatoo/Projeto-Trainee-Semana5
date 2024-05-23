@@ -2,7 +2,7 @@ import { User } from "@prisma/client";
 import prisma from "../../../../config/prismaClient";
 
 class UserService {
-  async createUser(body: User) {
+  async createUser(body: Omit<User, "id">) {
         const user = await prisma.user.create({
             data: {
                 name: body.name,
