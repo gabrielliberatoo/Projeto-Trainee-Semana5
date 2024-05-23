@@ -58,6 +58,9 @@ class UserService {
   }
 
   async deleteUser(id: number) {
+    if (!(await prisma.user.findUnique({ where: { id } }))) {
+        throw new Error("Invalid user ID.");
+      }
     const user = await prisma.user.delete({
       where: {
         id: id,
