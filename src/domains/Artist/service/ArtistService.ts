@@ -23,6 +23,16 @@ class ArtistService {
         return artists;
     }
 
+    async getArtistById(id: number){
+        const artist = await prisma.artist.findUnique({
+            where: {
+                id: id,
+            },
+            include : {musics:true}
+        });
+        return artist;
+    }
+
 }
 
 export default new ArtistService();
