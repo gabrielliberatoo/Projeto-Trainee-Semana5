@@ -34,3 +34,4 @@ model Music {
   artist   Artist @relation(fields: [artistId], references: [id])
   users    User[]
 }
+
