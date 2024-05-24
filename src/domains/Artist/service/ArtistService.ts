@@ -33,6 +33,23 @@ class ArtistService {
         return artist;
     }
 
+    async updateArtist(id: number, body: Partial<Artist>) {
+        if (!(await prisma.artist.findUnique({ where: { id } }))) {
+            throw new Error("Invalid artist ID.");
+        }
+        const artist = await prisma.artist.update({
+            where: {
+                id: id,
+            },
+            data: {
+                name: body.name,
+                photo: body.photo,
+                streams: body.streams,
+            },
+        });
+        return artist;
+    }
+
 }
 
 export default new ArtistService();
