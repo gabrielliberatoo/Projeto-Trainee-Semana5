@@ -46,6 +46,7 @@ class ArtistService {
                 photo: body.photo,
                 streams: body.streams,
             },
+            include : {musics:true}
         });
         return artist;
     }
@@ -58,6 +59,7 @@ class ArtistService {
             where: {
                 id: id,
             },
+            include : {musics:true}
         });
         return artist;
     }
