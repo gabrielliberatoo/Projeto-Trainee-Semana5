@@ -50,6 +50,18 @@ class ArtistService {
         return artist;
     }
 
+    async deleteArtist(id: number) {
+        if (!(await prisma.artist.findUnique({ where: { id } }))) {
+            throw new Error("Invalid artist ID.");
+        }
+        const artist = await prisma.artist.delete({
+            where: {
+                id: id,
+            },
+        });
+        return artist;
+    }
+
 }
 
 export default new ArtistService();
