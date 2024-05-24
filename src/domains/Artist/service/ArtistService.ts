@@ -12,4 +12,17 @@ class ArtistService {
     });
     return artist;
 }
+
+    async getArtists() {
+        const artists = await prisma.artist.findMany({
+            orderBy: {
+                id: 'asc'
+            },
+            include : {musics:true}
+        });
+        return artists;
+    }
+
 }
+
+export default new ArtistService();
